@@ -1,0 +1,92 @@
+public class MyArrayList{
+	private String[] array = new String[4]; // creates an array with length 4
+	private int size = 0; // initial size of the array list
+	private int capacity = 4; // initial capacity of the array list
+
+	
+	public void add(String e) {
+		array[size] = e; // inserts the element in the array// 
+		size++; // everytime an element is added, the size of the array increases by 1
+		
+		if (size == array.length) { 
+			String[] newArray = new String[array.length*2]; // if the size of the array is the same as the array length, it will create a new array twice its size
+			
+			for (int i=0; i<array.length; i++ ) { // initializes the array
+				newArray[i]= array[i]; // sets the elements of the initial array as the elements of the new array
+			}
+			
+			array = newArray; // sets the initial array as the new array
+		}
+	}
+	
+	public int getSize() {
+		return size; // returns the current size of the array list
+	}
+	
+	public int getCapacity() {
+	  int newSize = this.size; // returns the new capacity of the array list
+	  
+	  do {
+		  capacity  = capacity*2; // sets the capacity twice its initial capacity
+	  }
+	  
+	  while(capacity < newSize);
+	  
+	  return capacity; // returns the capacity
+	}
+	
+	public String getElementAtIndex(int index) {
+		return array[index]; // returns the element in that specific index
+	}
+	
+	public boolean find(String element2Find) {
+		
+		int found = 0; // used as the basis when searching for the element
+		
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] == element2Find) { // finds if any of the element of the array is the same as element to be found 
+				found = 1; // if the element is in the array, it will execute the code under if condition
+	        }
+	    }
+			
+		if (found == 1) {
+			return true; // will return true if found
+		}
+	        
+	    else {
+	        return false; // if the element is not in the array, it will return fals
+	    }
+    }
+
+	public static void main(String[] args) {
+		MyArrayList newarray = new MyArrayList();
+		
+		newarray.add("red"); // adds elements to the aray
+		newarray.add("orange");
+		newarray.add("yellow");
+		newarray.add("green");
+		newarray.add("blue");
+		newarray.add("indigo");
+		newarray.add("violet");
+		newarray.add("black");
+		newarray.add("gray");
+		newarray.add("white");
+		
+		for (int i = 0; i< newarray.getSize(); i++) { // initializes the array
+			System.out.println(newarray.getElementAtIndex(i)); // prints the array
+    	}
+		
+		System.out.println();
+		
+		System.out.println(newarray.find("blue")); // finds the certain element
+		System.out.println(newarray.find("brown"));
+		System.out.println("Element is: " + newarray.getElementAtIndex(2)); // find and prints the element at that specific index
+		System.out.println("Size: " + newarray.getSize()); // gets the array size
+		System.out.println("Capacity: " + newarray.getCapacity()); // gets the array capacity
+		System.out.println(newarray.find("fuchsia"));
+		System.out.println(newarray.find("gray"));
+		System.out.println(newarray.find("red"));
+		System.out.println("Element is: " + newarray.getElementAtIndex(5));
+     }
+		
+}
