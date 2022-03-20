@@ -1,0 +1,123 @@
+public class QueueList {
+	
+	private Node front;
+	private Node rear;
+	
+	private int size;
+	 
+	public QueueList(){ // zero argument constructor or initial setting of the queue
+		front = null;
+		rear = null;
+		size = 0;
+	}
+
+	private class Node{ // defines node
+		public int data;
+		public Node next;
+		
+		public Node(int data){
+			this.data = data;
+	    }
+		
+		public void displayData(){
+			System.out.println(data); // prints the data of the queue
+	    } 
+	}
+	 
+
+	public boolean isEmpty(){
+		return size == 0; // returns the size 0 if the queue is empty
+	} 
+	
+	 
+	public void Enqueue(int data){ // inserts data at the rear of the queue
+		Node oldRear = new Node(data); // creates new node of oldRear
+		 
+		if(isEmpty()){ // if the queue is empty, node oldRear is set as front
+			front = oldRear;
+		}
+			 
+		else { // sets node oldRear as the next rear
+			rear.next = oldRear;
+		}
+		    
+		rear = oldRear; // sets the node oldRear as the rear of the queue
+		
+		size++; // everytime a data is inserted, the size of the queue increases by 1
+		 
+		System.out.println("Data inserted: " + data); // prints the data inserted
+	 }
+	 
+	 public void Dequeue() { // deletes data at the front of the queue
+		 int del = front.data; // sets the front data to del
+
+		 if(front.next == null){ // if the next data after front is null, it will set rear as empty
+			 rear = null;
+		 }
+
+		 front = front.next; // sets the next data after initial front as the new front of the queue
+		 
+		 size--; // everytime a data is deleted, the size of the queue decreases by 1
+		  
+		 System.out.println("Data deleted: " + del); // prints the data deleted
+	 }
+	 
+	 
+	 public void displayQ(){	
+		 System.out.println();
+		 System.out.println("Queue:");
+		 
+		 Node current = front; // creates a new node current and sets the front of the queue
+		 
+		 if (current == null) { // if the queue has no data it will execute the following code
+			 System.out.println("empty");
+		 }
+		 
+		 while(current != null) { // if the queue has data it will continuously execute the following code
+			 current.displayData();
+			 current = current.next; // sets the next current as the currect
+	     }
+		 
+		 System.out.println();
+	 }
+	 
+	 public void getSize() {
+		 System.out.println("Queue size: " + size); // prints the size of the queue
+		 System.out.println();
+	 }
+	 
+	 public void frontNrear() {
+		 System.out.println("Queue front: " + front.data); // prints the front of the queue
+		 System.out.println("Queue rear: " + rear.data); // prints the rear of the queue
+		 System.out.println();
+	 }
+	 
+	 
+	 public static void main(String[] args) {
+		 QueueList queue = new QueueList();
+		 
+		 queue.displayQ();
+		 queue.getSize();
+		 queue.Enqueue(59);
+		 queue.Enqueue(72);
+		 queue.displayQ();
+		 queue.frontNrear();
+		 queue.Enqueue(38);
+		 queue.displayQ(); 
+		 queue.Dequeue();
+		 queue.displayQ();
+		 queue.Enqueue(15);
+		 queue.Enqueue(9);
+		 queue.displayQ();
+		 queue.frontNrear();
+		 queue.getSize();
+		 queue.Dequeue();
+		 queue.Dequeue();
+		 queue.displayQ();
+		 queue.Enqueue(26);
+		 queue.displayQ();
+		 queue.frontNrear();
+		 queue.getSize();
+	 }
+
+}
