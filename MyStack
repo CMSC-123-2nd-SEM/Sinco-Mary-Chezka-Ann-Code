@@ -1,0 +1,147 @@
+
+public class MyStack { //Create a linked list implementation of stack
+	
+	private class Node{//initialize linked list node
+		int data; //declare integer data 
+		Node next;//declare reference Node type variable
+	}
+	
+	Node top; //global variable top to be accessed by all parts of the program
+	
+	MyStack() //there are no initial elements in the list
+	{
+		this.top = null;
+	}
+	
+	public void push (int e) { 
+		Node node = new Node(); //create a new Node node that will hold every elements pushed
+		
+		node.data = e; //initialize data into node data field
+		node.next = top; //initialize global reference into node next 
+		top = node; // top node reference
+	}
+	
+	public boolean isEmpty() {
+		return top == null;// return if the Stack is empty
+	}
+	
+	 public int peek()
+
+	    {
+	        if (!isEmpty()) {
+
+	            return top.data;// prints top data if stack is not empty
+	        }
+
+	        else {
+
+	            System.out.println("Stack is empty");
+
+	            return -1;//return if the number of elements in stack is less than 0
+
+	        }
+
+	    }
+	 public void pop() 
+
+	    {
+
+	        // check if stack is empty
+
+	        if (isEmpty()) {
+
+	            System.out.print("\nStack is Empty");
+
+	            return;
+
+	        }
+	 
+
+	        // update the top reference to point to the next node
+
+	        top = (top).next;
+
+	    }
+	 
+
+	    public void display()
+
+	    {
+
+	        // check is stack is empty
+
+	        if (top == null) {
+
+	            System.out.printf("\nStack is empty");
+
+	        }
+
+	        else {
+
+	            Node node = top;
+
+	            while (node != null) {
+	 
+
+	                // print node data
+
+	                System.out.printf("%d > ", node.data);
+	 
+
+	                // assign node next to node
+
+	                node = node.next;
+
+	            }
+
+	        }
+
+	    }
+
+	
+
+	public static void main(String[] args) {
+		 // create Object of Implementing class
+
+       MyStack obj = new MyStack();
+
+        // insert Stack value
+
+        obj.push(5);
+
+        obj.push(8);
+
+        obj.push(78);
+
+        obj.push(12);
+ 
+
+        // print Stack elements
+
+        obj.display();
+ 
+
+        // print Top element of Stack
+
+        System.out.printf("\nTop element is %d\n", obj.peek());
+ 
+
+        // Delete top element of Stack
+
+        obj.pop();
+ 
+        
+        obj.push(11);
+
+
+        // print Stack elements
+
+        obj.display();
+ 
+
+        // print Top element of Stack
+
+        System.out.printf("\nTop element is %d\n", obj.peek());
+	}
+
+}
