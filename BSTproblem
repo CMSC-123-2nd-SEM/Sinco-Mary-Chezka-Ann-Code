@@ -1,0 +1,93 @@
+
+class Solution{
+	static Node root1;
+	static Node root2;   
+// Binary Tree Node
+class Node
+{
+    int data;
+    Node left;
+    Node right;
+ 
+    Node(int e) //initialize the values
+    {
+        data = e;
+        left = null; 
+        right = null;
+    }
+}
+ 
+// 
+
+ 
+// Roots shall be set into null
+Solution()
+{
+    root1 = null;
+    root2 = null;
+}
+
+// This functionality will insert new nodes with the given data in the tree and find the number next-in-line
+Node insert(Node node, int value)
+{
+    // If the tree is empty, return a new node
+    if (node == null)
+    {
+        node = new Node(value);
+    }
+ 
+    if (value < node.data)
+    {
+        root2 = node;
+        node.left = insert(node.left, value);
+    }
+ 
+    else if (value > node.data)
+        node.right = insert(node.right, value);
+         
+    return node;
+}
+ 
+static void replace(int arr[], int n)
+{
+    Solution tree = new Solution();
+ 
+
+    for(int i = n - 1; i >= 0; i--)
+    {
+        root2 = null;
+         
+        root1 = tree.insert(root1, arr[i]);
+ 
+        if (root2 != null)
+            arr[i] = root2.data;
+             
+        else
+            arr[i] = -1;
+    }
+    
+    
+}
+ 
+// Driver code
+public static void main(String[] args)
+{
+    int arr[] = new int[] { 8, 58, 71, 18, 31,
+                            32, 63, 92, 43, 3,
+                            91, 93, 25, 80, 28 };
+    int n = arr.length;
+    System.out.print("\nOld BST is:(");
+    for(int i=0;i<n;i++) {
+    	System.out.print(arr[i] +" ");
+    }
+    System.out.println(")");
+    
+    
+    replace(arr, n);
+    System.out.print("\nNew BST is:(");
+    for(int i = 0; i < n; i++)
+        System.out.print(arr[i] + ", ");
+    System.out.println(")");
+}
+
+}
